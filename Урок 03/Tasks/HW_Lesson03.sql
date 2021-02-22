@@ -13,7 +13,7 @@ SET
 
 -- Задание 2.
 -- Изменяем существующую таблицу с условиями задания
- ALTER TABLE shop.users MODIFY COLUMN created_at VARCHAR(255);
+ALTER TABLE shop.users MODIFY COLUMN created_at VARCHAR(255);
 
 ALTER TABLE shop.users MODIFY COLUMN updated_at VARCHAR(255);
 -- Приводим существующие данные к условию задания. Игнорируем уникальность и эмуляцию прочего поведения реального ЖЦ БД
@@ -33,9 +33,9 @@ SET
 	updated_at = STR_TO_DATE(updated_at,
 	"%d.%m.%Y %k:%i");
 -- Выполним операцию изменения типов полей created_at и updated_at на тип DATETIME
- ALTER TABLE users CHANGE created_at created_at DATETIME;
+ALTER TABLE users CHANGE created_at created_at DATETIME DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE users CHANGE updated_at updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
 
-ALTER TABLE users MODIFY COLUMN updated_at DATETIME;
 -- Проверим результат
  DESCRIBE users;
 
